@@ -1,15 +1,35 @@
-import React from 'react';
-import {createContext, useContext, useReducer} from 'react';
-import {STORES} from './mocks/stores.mock';
+import React, { useState } from 'react';
+import { createContext, useContext, useReducer } from 'react';
+import { filterBlogs, initialState } from './state/store.actions';
+import { INITIAL_STATE, storesReducer } from './state/store.reducer';
 
 const StoresContext = createContext(null);
 const StoresDispatchContext = createContext(null);
 
-export const StoresProvider = ({children}) => {
-  const [stores, dispatch] = useReducer(storesReducer, STORES);
+export const StoresProvider = ({ children }) => {
+  const [stores, dispatch] = useReducer(storesReducer, INITIAL_STATE);
+  const [searchBarText, setSearchBarText] = useState('');
+
+  const handleSearchStore = query => {
+    const queryLowercase = query.toLowerCase();
+    setSearchBarText(query);
+    if (queryLowercase === '') {
+      return dispatch(initialState());
+    }
+    if (queryLowercase.length > 0) {
+      filterBlogs(queryLowercase);
+      dispatch(filterBlogs(queryLowercase));
+    }
+  };
+
+  const value = {
+    stores,
+    searchBarText,
+    handleSearchStore,
+  };
 
   return (
-    <StoresContext.Provider value={stores}>
+    <StoresContext.Provider value={value}>
       <StoresDispatchContext.Provider value={dispatch}>
         {children}
       </StoresDispatchContext.Provider>
@@ -17,45 +37,5 @@ export const StoresProvider = ({children}) => {
   );
 };
 
-export const useStores = () => {
-  return useContext(StoresContext);
-};
-
-export const useStoresDispatch = () => {
-  return useContext(StoresDispatchContext);
-};
-
-export const actions = {
-  ADD: 'add',
-  UPDATE: 'update',
-  DELETE: 'delete',
-};
-
-const storesReducer = (stores, action) => {
-  switch (action.type) {
-    case actions.ADD:
-      return [
-        ...stores,
-        {
-          id: action.id,
-          name: action.name,
-          address: action.address,
-          phone: action.phone,
-          website: action.website,
-          products: [],
-        },
-      ];
-    case actions.UPDATE:
-      return stores.map(store => {
-        if (store.id === action.store.id) {
-          return action.store;
-        } else {
-          return store;
-        }
-      });
-    case actions.DELETE:
-      return stores.filter(({id}) => id !== action.id);
-    default:
-      throw Error(`Unknown action ${action.type}`);
-  }
-};
+export const useStores = () => useContext(StoresContext);
+export const useStoresDispatch = () => useContext(StoresDispatchContext);

@@ -5,4 +5,7 @@ module.exports = {
   settings: {
     'import/parser': 'babel-eslint',
   },
+  rules: {
+    'react/forbid-prop-types': [0],
+  },
 };
