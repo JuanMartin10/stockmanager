@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Image, StyleSheet, View} from 'react-native';
-import {Card, IconButton, Text} from 'react-native-paper';
+import { Image, StyleSheet, View } from 'react-native';
+import { Card, IconButton, Text } from 'react-native-paper';
 
-const ProductCard = ({id, name, cover, quantity, onModifyQuantity}) => {
+const ProductCard = ({ id, name, cover, quantity, onModifyQuantity }) => {
   const handleModifyQuantity = operation => {
     // TODO Implement increase or decrease of the current quantity
     onModifyQuantity(id, quantity);

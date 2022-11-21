@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Image, ScrollView, StyleSheet} from 'react-native';
-import {Surface, List} from 'react-native-paper';
+import { Image, ScrollView, StyleSheet } from 'react-native';
+import { Surface, List } from 'react-native-paper';
 import ProductsList from './ProductsList';
 
-const StoreDetails = ({store, products, onModifyQuantity}) => {
-  const {name, address, cover, phone} = store;
+const StoreDetails = ({ store, products, onModifyQuantity }) => {
+  const { name, address, cover, phone } = store;
   return (
     <ScrollView>
       <Image source={cover} style={styles.image} />

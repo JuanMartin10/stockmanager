@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useRoute} from '@react-navigation/native';
-import {View} from 'react-native';
+import { useRoute } from '@react-navigation/native';
+import { View } from 'react-native';
 import StoreDetails from '../components/StoreDetails';
 
 const StoreScreen = () => {
-  const {params} = useRoute();
-  const {selectedStore} = params;
+  const { params } = useRoute();
+  const { selectedStore } = params;
 
   const handleQuantityModification = (productId, newQuantity) => {
     // TODO Add logic to update the new quantity in the object
