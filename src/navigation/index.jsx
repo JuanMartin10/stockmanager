@@ -1,15 +1,15 @@
-import {SafeAreaView, StatusBar} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { SafeAreaView, StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import {useDarkTheme} from '../hooks/useDarkTheme';
+import { useDarkTheme } from '../hooks/useDarkTheme';
 import StoreScreen from '../store/containers/StoreScreen';
 import HomeScreen from '../home/containers/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
-  const {theme, backgroundStyle, statusBar, styles} = useDarkTheme();
+  const { theme, backgroundStyle, statusBar, styles } = useDarkTheme();
 
   return (
     <SafeAreaView style={[styles.container, backgroundStyle]}>
@@ -23,7 +23,7 @@ const Navigation = () => {
           <Stack.Screen
             name="Store"
             component={StoreScreen}
-            options={({route}) => ({
+            options={({ route }) => ({
               title: route.params.selectedStore.name,
             })}
           />
