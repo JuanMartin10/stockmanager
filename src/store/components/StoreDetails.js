@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image, ScrollView, StyleSheet } from 'react-native';
+import { Image, View, StyleSheet } from 'react-native';
 import { Surface, List } from 'react-native-paper';
 import ProductsList from './ProductsList';
 
 const StoreDetails = ({ store, products, onModifyQuantity }) => {
   const { name, address, cover, phone } = store;
   return (
-    <ScrollView>
+    <View>
       <Image source={cover} style={styles.image} />
       <Surface style={styles.detailsCard}>
         <List.Item
@@ -21,7 +21,7 @@ const StoreDetails = ({ store, products, onModifyQuantity }) => {
         />
       </Surface>
       <ProductsList products={products} onModifyQuantity={onModifyQuantity} />
-    </ScrollView>
+    </View>
   );
 };
 

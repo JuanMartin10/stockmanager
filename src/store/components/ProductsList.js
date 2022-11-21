@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, TouchableHighlight, View } from 'react-native';
+import { FlatList, StyleSheet, TouchableHighlight, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import ProductCard from './ProductCard';
@@ -16,18 +16,19 @@ const ProductsList = ({ products, onModifyQuantity }) => {
       <Text style={styles.title} variant="titleLarge">
         Stock
       </Text>
-      {products.map(product => {
-        return (
+      <FlatList
+        data={products}
+        renderItem={({ item }) => (
           <TouchableHighlight
             activeOpacity={0.6}
             underlayColor="transparent"
             style={styles.item}
-            key={product.id}
-            onPress={() => handleNavigation(product)}>
-            <ProductCard {...product} onModifyQuantity={onModifyQuantity} />
+            key={item.name}
+            onPress={() => handleNavigation(item)}>
+            <ProductCard {...item} onModifyQuantity={onModifyQuantity} />
           </TouchableHighlight>
-        );
-      })}
+        )}
+      />
     </View>
   );
 };

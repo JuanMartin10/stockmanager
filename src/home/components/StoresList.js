@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import StoreCard from './StoreCard';
 
-const StoresList = ({stores, onPressView}) => {
+const StoresList = ({ stores, onPressView }) => {
   return (
     <ScrollView style={styles.container}>
       {stores?.map(store => (
