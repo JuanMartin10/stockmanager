@@ -1,20 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, View} from 'react-native';
-import {Text} from 'react-native-paper';
+import { StyleSheet, TouchableHighlight, View } from 'react-native';
+import { Text } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 import ProductCard from './ProductCard';
 
-const ProductsList = ({products, onModifyQuantity}) => {
+const ProductsList = ({ products, onModifyQuantity }) => {
+  const navigation = useNavigation();
+  const handleNavigation = product =>
+    navigation.navigate('Product', {
+      product,
+    });
   return (
     <View style={styles.container}>
       <Text style={styles.title} variant="titleLarge">
         Stock
       </Text>
-      {products.map(product => (
-        <View style={styles.item} key={product.id}>
-          <ProductCard {...product} onModifyQuantity={onModifyQuantity} />
-        </View>
-      ))}
+      {products.map(product => {
+        return (
+          <TouchableHighlight
+            activeOpacity={0.6}
+            underlayColor="transparent"
+            style={styles.item}
+            key={product.id}
+            onPress={() => handleNavigation(product)}>
+            <ProductCard {...product} onModifyQuantity={onModifyQuantity} />
+          </TouchableHighlight>
+        );
+      })}
     </View>
   );
 };

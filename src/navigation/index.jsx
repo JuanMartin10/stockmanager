@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useDarkTheme } from '../hooks/useDarkTheme';
 import StoreScreen from '../store/containers/StoreScreen';
 import HomeScreen from '../home/containers/HomeScreen';
+import ProductScreen from '../product/containers/ProductScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,13 @@ const Navigation = () => {
             component={StoreScreen}
             options={({ route }) => ({
               title: route.params.selectedStore.name,
+            })}
+          />
+          <Stack.Screen
+            name="Product"
+            component={ProductScreen}
+            options={({ route }) => ({
+              title: route.params.product.name,
             })}
           />
         </Stack.Navigator>
