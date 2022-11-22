@@ -5,6 +5,17 @@ import { Card, IconButton, Text } from 'react-native-paper';
 
 const ProductCard = ({ id, name, cover, quantity, onModifyQuantity }) => {
   const handleModifyQuantity = operation => {
+    switch (operation) {
+      case 'subtract':
+        quantity = quantity - 1;
+        break;
+      case 'add':
+        quantity = quantity + 1;
+        break;
+      default:
+        break;
+    }
+
     // TODO Implement increase or decrease of the current quantity
     onModifyQuantity(id, quantity);
   };

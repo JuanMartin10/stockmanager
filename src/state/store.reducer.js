@@ -31,6 +31,19 @@ export const storesReducer = (stores, action) => {
       });
     case actions.DELETE:
       return stores.filter(({ id }) => id !== action.id);
+    case actions.PRODUCT_QUANTITY:
+      return stores.map(st =>
+        st.id === action.payload.selectedStore.id
+          ? {
+              ...action.payload.selectedStore,
+              products: st.products.map(el =>
+                el.id === action.payload.productId
+                  ? { ...el, quantity: action.payload.newQuantity }
+                  : el,
+              ),
+            }
+          : st,
+      );
     case actions.INITIAL:
       return INITIAL_STATE;
     default:

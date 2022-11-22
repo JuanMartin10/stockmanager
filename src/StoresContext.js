@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { createContext, useContext, useReducer } from 'react';
-import { filterBlogs, initialState } from './state/store.actions';
+import {
+  filterBlogs,
+  initialState,
+  updateQuantityProduct,
+} from './state/store.actions';
 import { INITIAL_STATE, storesReducer } from './state/store.reducer';
 
 const StoresContext = createContext(null);
@@ -22,10 +26,13 @@ export const StoresProvider = ({ children }) => {
     }
   };
 
+  const handleQuantity = obj => dispatch(updateQuantityProduct(obj));
+
   const value = {
     stores,
     searchBarText,
     handleSearchStore,
+    handleQuantity,
   };
 
   return (

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Button, Card} from 'react-native-paper';
+import { Button, Card } from 'react-native-paper';
 
-const StoreCard = ({id, name, cover, onPressView}) => {
+const StoreCard = ({ id, name, cover, onPressView }) => {
   return (
     <Card>
       <Card.Title title={name} titleVariant="titleLarge" />

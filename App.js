@@ -1,12 +1,12 @@
 import React from 'react';
-import {Provider as PaperProvider} from 'react-native-paper';
+import { Provider as PaperProvider } from 'react-native-paper';
 
-import {StoresProvider} from './src/StoresContext';
-import {useDarkTheme} from './src/hooks/useDarkTheme';
+import { StoresProvider } from './src/StoresContext';
+import { useDarkTheme } from './src/hooks/useDarkTheme';
 import Navigation from './src/navigation';
 
 const App = () => {
-  const {theme} = useDarkTheme();
+  const { theme } = useDarkTheme();
 
   return (
     <PaperProvider theme={theme}>
